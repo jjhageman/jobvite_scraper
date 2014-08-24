@@ -8,7 +8,7 @@ import (
 )
 
 type Results struct {
-  results *Job
+  Results string
 }
 
 
@@ -49,6 +49,7 @@ func decode(resp []byte, jobs *interface{}) (error) {
   return err
 }
 
+
 func main() {
 //GET /api/jobsearch?q=design+manager&radius=30&limit=10&start=0&latitude=37.7749295&longitude=-122.41941550000001&_=1408687065572 HTTP/1.1
 //Host: search.jobvite.com
@@ -71,15 +72,18 @@ func main() {
   if getErr != nil {
     fmt.Printf("Sorry, something went wrong getting the url: %q\n", getErr)
   } else {
-    //fmt.Printf("Raw response: %q\n\n", resp)
-    var dat map[string]interface{}
-    if parseErr := json.Unmarshal(resp, &dat); parseErr != nil {
-        panic(parseErr)
-    }
+
+
+
+    fmt.Printf("Raw response: %q\n\n", resp)
+
+    //var dat map[string]interface{}
+    //if parseErr := json.Unmarshal(resp, &dat); parseErr != nil {
+    //    panic(parseErr)
+    //}
     //fmt.Println(dat)
-    results := dat["results"].([]interface{})
-    co := results[0].(string)
-    fmt.Println(co)
+    //results := dat["results"].([]interface{})
+    //fmt.Println(co)
     //parseErr := decode(resp, &dat)
   }
 }
